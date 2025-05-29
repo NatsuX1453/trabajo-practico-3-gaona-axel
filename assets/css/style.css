@@ -1,3 +1,18 @@
 .card {
-  width: 200px;
+  width: 220px;
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
+
+.card-img-top {
+  height: 410px;
+  width: 150px;
+  object-fit: fixed;
+}
+.card-title, .card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} 
