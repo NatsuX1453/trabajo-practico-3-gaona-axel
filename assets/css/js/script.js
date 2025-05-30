@@ -103,8 +103,6 @@ contenedorPadre.addEventListener("click", (e) => {
     verDetalles(id);
   }
 });
-
-// Función para ver detalles de un personaje
 const verDetalles = async (id) => {
   try {
     const response = await fetch(`${urlDragonBall}/${id}`);
@@ -112,7 +110,15 @@ const verDetalles = async (id) => {
       throw new Error("Error en la API");
     }
     const data = await response.json();
-    alert(data.description || "Sin descripción disponible");
+    document.getElementById('personajeModalLabel').textContent = data.name;
+    document.getElementById('modalBody').innerHTML = `
+      <img src="${data.image}" alt="${data.name}" class="img-fluid mb-3" style="max-height:200px;">
+      <p><strong>Raza:</strong> ${data.race}</p>
+      <p><strong>Género:</strong> ${data.gender}</p>
+      <p><strong>Descripción:</strong> ${data.description || "Sin descripción disponible"}</p>
+    `;
+    const modal = new bootstrap.Modal(document.getElementById('personajeModal'));
+    modal.show();
   } catch (error) {
     console.log(error);
   }
