@@ -91,7 +91,7 @@ window.addEventListener("scroll", async () => {
         personaje.name.toLowerCase().includes(ultimaBusqueda)
       );
     }
-    renderPersonajes(personajes, true); // append=true
+    renderPersonajes(personajes, true);
   }
 });
 

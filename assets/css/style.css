@@ -7,12 +7,19 @@
 }
 
 .card-img-top {
-  height: 410px;
-  width: 150px;
-  object-fit: fixed;
+  height: 450px;
+  object-fit: fill;
+  object-position: center;
+  display: block;
 }
 .card-title, .card-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 } 
+#Buscador {
+margin-left: 380px;
+  width: 360px;
+  height: 50px;
+  transition: border-color 0.3s ease;
+}
