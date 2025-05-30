@@ -1,3 +1,102 @@
+header,
+.container,
+main {
+  background: transparent !important;
+}
+body {
+background-image:url(../../img/wallhaven-1pxqkw.png);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
 .card {
-  width: 200px;
+  width: 220px;
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.466) !important;
+  border: none !important;
+}
+.card-body {
+  background-color: rgba(255, 255, 255, 0.589) !important;
+  border-radius: 0 0 10px 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-ver-detalles {
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.card-img-top {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;         
+  object-position: center;
+  background: rgba(255, 255, 255, 0.226);           
+  display: block;
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.774);
+}
+.card:hover .card-img-top {
+  transform: scale(1.12);
+  z-index: 2;
+}
+.card-title, .card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} 
+#Buscador {
+margin-left: 380px;
+  width: 360px;
+  height: 50px;
+  transition: border-color 0.3s ease;
+}
+#Buscador .form-control,
+#Buscador .btn {
+  height: 40px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+#Buscador .form-control {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid #ccc;
+  color: #222;
+  transition: background 0.3s;
+}
+
+#Buscador .form-control:focus {
+  background: rgba(255,255,255,0.85);
+  border-color: #888;
+  color: #111;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.438) !important;
+  backdrop-filter: blur(3px);
+  border-radius: 16px;
+}
+
+#modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#modalBody img {
+  display: block;
+  margin: 0 auto 16px auto;
+  max-width: 100%;
+  max-height: 220px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
