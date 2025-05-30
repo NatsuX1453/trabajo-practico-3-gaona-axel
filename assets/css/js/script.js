@@ -1,3 +1,5 @@
+let personajesGuardados = [];
+
 const formBuscar = document.getElementById("Buscador");
 const contenedorPadre = document.querySelector("#container .row");
 const urlDragonBall = "https://dragonball-api.com/api/characters";
@@ -48,12 +50,38 @@ const renderPersonajes = (personajes, append = false) => {
 };
 
 // Mostrar personajes al cargar la página
+// Mostrar personajes al cargar la página
 window.addEventListener("DOMContentLoaded", async () => {
   page = 1;
   const data = await cargarDatos(urlDragonBall, page);
-  renderPersonajes(data && data.items ? data.items : []);
+  if (data && data.items) {
+    personajesGuardados = data.items; // Guarda los personajes de la primera página
+    renderPersonajes(data.items);
+  }
 });
 
+// Scroll infinito
+window.addEventListener("scroll", async () => {
+  if (
+    window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
+    !loading
+  ) {
+    page++;
+    const data = await cargarDatos(urlDragonBall, page);
+    if (!data || !data.items) return;
+
+    // Guarda los nuevos personajes
+    personajesGuardados = personajesGuardados.concat(data.items);
+
+    let personajes = data.items;
+    if (ultimaBusqueda) {
+      personajes = personajes.filter((personaje) =>
+        personaje.name.toLowerCase().includes(ultimaBusqueda)
+      );
+    }
+    renderPersonajes(personajes, true);
+  }
+});
 // Evento para buscar personajes (filtra por nombre)
 formBuscar.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -67,7 +95,6 @@ formBuscar.addEventListener("submit", async (event) => {
     contenedorPadre.innerHTML = "<p class='text-danger'>No se pudieron cargar los personajes.</p>";
     return;
   }
-
   const filtrados = data.items.filter((personaje) =>
     personaje.name.toLowerCase().includes(texto)
   );
@@ -80,10 +107,10 @@ window.addEventListener("scroll", async () => {
     window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
     !loading
   ) {
+    loader.style.display = "block";
     page++;
     const data = await cargarDatos(urlDragonBall, page);
-    if (!data || !data.items) return;
-
+    loader.style.display = "none";
     // Si hay búsqueda activa, filtra antes de agregar
     let personajes = data.items;
     if (ultimaBusqueda) {
@@ -123,3 +150,8 @@ const verDetalles = async (id) => {
     console.log(error);
   }
 };
+
+const loader = document.getElementById('loader');
+
+loader.style.display = "block";
+loader.style.display = "none";
